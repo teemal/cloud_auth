@@ -21,8 +21,7 @@ export default {
     return {
       email: "",
       password: ""
-      // f_name: '',
-      // l_name: '',
+
     };
   },
   methods: {
@@ -33,11 +32,14 @@ export default {
         .then((res) => {
           console.log(res);
           console.log('poop');
+          this.$router.push('/');
+          alert('congrats, you\'re now a member of our fight club!');
         })
         .catch(function(error) {
           // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;
+          alert('sorry, something went wrong!');
           // ...
         });
     }
