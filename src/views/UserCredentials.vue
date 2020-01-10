@@ -65,7 +65,8 @@ export default {
         .signInWithPopup(provider)
         .then(res => {
           this.user = res;
-          this.$router.push("userpage");
+          var userId = res.user.uid;
+          this.$router.push("userpage/" + userId);
         })
         .catch(e => {
           alert(e);
