@@ -44,7 +44,7 @@ export default {
           // console.log(res.user.uid);
           var userId = res.user.uid;
           this.$emit("setUid", userId);
-          this.$router.push("userpage");
+          this.$router.push("userpage/" + userId);
         })
         .catch(function(error) {
           // Handle Errors here.
@@ -78,7 +78,11 @@ export default {
 
 <style scoped>
 #google-signin-button {
-  width: 20%;
+  width: 10%;
+}
+
+#google-signin-button:hover {
+  cursor: pointer;
 }
 
 .btn:hover {
