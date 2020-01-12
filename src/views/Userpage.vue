@@ -3,7 +3,9 @@
     <div>
       <p>Hi {{email}}</p>
       <p>your ID# is {{uid}}</p>
-      <button v-on:click="logout()">Log Out</button>
+      <Logout />
+      <button v-on:click="goToNotes()">Go To Notes</button>
+      <!-- <router-link to="notes-page">Go To Notes</router-link> -->
     </div>
   </div>
 </template>
@@ -12,10 +14,13 @@
 // @ is an alias to /src
 /*eslint-disable*/
 import firebase from "firebase";
+import Logout from "../components/Logout";
 
 export default {
   name: "signup",
-  components: {},
+  components: {
+      Logout,
+  },
   data() {
     return {
       email: '',
@@ -23,18 +28,8 @@ export default {
     };
   },
   methods: {
-    logout() {
-      firebase
-        .auth()
-        .signOut()
-        .then(res => {
-          // Sign-out successful.
-          this.$router.push("/");
-        })
-        .catch(error => {
-          // An error happened.
-          alert("Oh no! You're trapped here forever!");
-        });
+    goToNotes(){
+        this.$router.push('/userpage/' + this.uid + '/notes');
     }
   },
   mounted: function(){

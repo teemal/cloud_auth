@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import UserCredentials from '../views/UserCredentials'
 import Signup from '../views/Signup'
 import Userpage from '../views/Userpage'
+import Notes from '../views/Notes'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/userpage/:uid',
     name: 'userpage',
     component: Userpage,
+  },
+  {
+    path: '/userpage/:uid/notes',
+    name: 'notes',
+    component: Notes,
   },
 ]
 
