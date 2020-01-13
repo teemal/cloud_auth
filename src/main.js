@@ -2,10 +2,11 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-import { firestorePlugin } from 'vuefire';
+import './firebase/ConfigFirebase'
+import * as vuefire from 'vuefire';
 
 Vue.config.productionTip = false;
-Vue.use(firestorePlugin);
+Vue.use(vuefire);
 
 
 new Vue({

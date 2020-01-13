@@ -17,5 +17,7 @@ const firebaseConfig = {
 var firebaseApp = firebase.initializeApp(firebaseConfig);
 
 export default firebaseApp;
+export const db = firebaseApp.database();
+export const notesRef = db.ref('notes');
 
 /*eslint-enable*/
