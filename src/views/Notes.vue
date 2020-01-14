@@ -8,20 +8,22 @@
             <input type="text" v-model="key"/> <br>
             <label>Description: </label>
             <input type="text" v-model="value"/> <br>
-            <button v-on:click="submitNote">Add</button>
+            <button v-on:click="submitNote()">Add</button>
         </div>
         <p id="notes-titles">NOTES:</p>
         <p id="desc-title">DESCRIPTION:</p>
         <div>
             <ul>
-                <li id="note-name" v-for="(note, key) in notes" v-bind:key="key">
-                    <h3 v-on:click="updateDesc(key)">{{note.name}}</h3>
+                <li v-for="(note, key) in notes" v-bind:key="key">
+                    <h3 class="note-name" v-on:click="updateDesc(note)">{{note.name}}</h3>
                     <button v-on:click="editNote()">Edit</button>
                     <button v-on:click="deleteNote(key)">Delete</button>
                     <button v-if="edit" v-on:click="updateNote(key)">Update</button>
-                    <h3>{{note.value}}</h3>
                     <input type="text" class="name-edit" v-if="edit" v-model="edit_note[key]" @keyup.enter="updateNote(key)">
                 </li>
+                <div>
+                    <h3 class="note-desc">{{desc}}</h3>
+                </div>
             </ul>
         </div>
         <div>
@@ -57,8 +59,9 @@ export default {
         deleteNote(key){
             db.ref('notes/' + key).remove()
         },
-        updateDesc(key){
-            this.desc = key;
+        updateDesc(note){
+            this.desc = note.value;
+            console.log(this.desc);
         }
     },
     data() {
@@ -92,21 +95,21 @@ var test = 0;
 }
 
 .logout-btn{
-    width: 10vw;
+    width: 100px;
 }
 
 .note-input{
     grid-area: 2/1/7/21;
 }
-#notes-title{
-    grid-area: 4/1/6/11;
+#notes-titles{
+    grid-area: 6/1/6/11;
 }
 
 #desc-title{
-    grid-area: 4/12/6/21;
+    grid-area: 6/12/6/21;
 }
 
-#note-name {
+.note-name {
     grid-area: 7/1/21/11;
 }
 
@@ -116,6 +119,10 @@ var test = 0;
 li {
     text-decoration: none;
     list-style-type: none;
+ }
+
+ div.note-desc{
+     overflow: scroll;
  }
 
 </style>
