@@ -13,10 +13,19 @@
         <p id="notes-titles">NOTES:</p>
         <p id="desc-title">DESCRIPTION:</p>
         <div>
-            <p id="note-name" v-for="note of notes" v-bind:key="note['.name']">{{note.name}}</p>
+            <ul>
+                <li id="note-name" v-for="(note, key) in notes" v-bind:key="key">
+                    <h3 v-on:click="updateDesc(key)">{{note.name}}</h3>
+                    <button v-on:click="editNote()">Edit</button>
+                    <button v-on:click="deleteNote(key)">Delete</button>
+                    <button v-if="edit" v-on:click="updateNote(key)">Update</button>
+                    <h3>{{note.value}}</h3>
+                    <input type="text" class="name-edit" v-if="edit" v-model="edit_note[key]" @keyup.enter="updateNote(key)">
+                </li>
+            </ul>
         </div>
         <div>
-            <p id="note-desc" v-for="note of notes" v-bind:key="note['.name']">{{note.value}}</p>
+            <!-- <p id="note-desc" v-for="note of notes" v-bind:key="note['.name']">{{note.value}}</p> -->
         </div>   
     </div>    
 </template>
@@ -26,22 +35,40 @@ const firebaseApp = require("../firebase/ConfigFirebase");
 import Logout from '../components/Logout';
 import { notesRef, db } from '../firebase/ConfigFirebase';
 
+
 export default {
     components: {
         Logout,
     },
     methods: {
         submitNote(){
-            console.log('test');
             notesRef.push({name: this.key, value: this.value, edit: false})
             .then(this.key = '', this.value = '');
         },
+        editNote(){
+            this.edit = true
+        },
+        updateNote(key){
+            this.edit = false
+            db.ref('notes/' + key).set({
+                name: this.edit_note[key]
+            });
+        },
+        deleteNote(key){
+            db.ref('notes/' + key).remove()
+        },
+        updateDesc(key){
+            this.desc = key;
+        }
     },
     data() {
         return {
             key: '',
             value: '',
+            desc: '',
             notes: [],
+            edit: false,
+            edit_note: [],
         }
     },
     created() {
@@ -86,6 +113,9 @@ var test = 0;
 #note-desc{
     grid-area: 7/12/21/21;
 }
-
+li {
+    text-decoration: none;
+    list-style-type: none;
+ }
 
 </style>
