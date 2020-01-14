@@ -4,6 +4,7 @@ import router from './router';
 import store from './store';
 import './firebase/ConfigFirebase'
 import * as vuefire from 'vuefire';
+import './../node_modules/bulma/css/bulma.css';
 
 Vue.config.productionTip = false;
 Vue.use(vuefire);

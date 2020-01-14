@@ -7,7 +7,7 @@
             <label>Note: </label>
             <input type="text" v-model="key"/> <br>
             <label>Description: </label>
-            <input type="text" v-model="value"/> <br>
+            <input type="text" v-model="value" @keyup.enter="submitNote()"/> <br>
             <button v-on:click="submitNote()">Add</button>
         </div>
         <p id="notes-titles">NOTES:</p>
@@ -113,7 +113,7 @@ var test = 0;
     grid-area: 7/1/21/11;
 }
 
-#note-desc{
+.note-desc{
     grid-area: 7/12/21/21;
 }
 li {
