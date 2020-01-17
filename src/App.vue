@@ -1,19 +1,22 @@
 <template>
   <div id="app">
+    <NavBar />
     <router-view v-on:setUid="getMsg($event)"/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import NavBar from './components/NavBar'
 
 export default {
   name: 'App',
   components: {
+    NavBar,
   },
   methods: {
     getMsg(id) {
-      this.uid = id
+      // this.uid = id
     }
   },
   data() {
@@ -25,14 +28,12 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+/* @import url('https://fonts.googleapis.com/css?family=Roboto'); */
 #app {
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background-color: #001414;
-  color: 	#f5efd7;
   height: 100vh;
 }
 button{

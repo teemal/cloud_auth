@@ -1,6 +1,10 @@
 <template>
   <div class="wrapper">
-    <button v-on:click="logout()">Log Out</button>
+    <div class="buttons">
+      <a class="button is-primary" v-on:click="logout()">
+        <strong>Log Out</strong>
+      </a>
+    </div>
   </div>
 </template>
 
@@ -9,9 +13,7 @@
 import firebase from "firebase";
 
 export default {
-  components: {
-
-  },
+  components: {},
   methods: {
     logout() {
       firebase

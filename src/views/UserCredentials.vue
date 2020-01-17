@@ -1,18 +1,61 @@
 <template>
   <div class="home">
     <form action v-on:submit.prevent>
-      <input type="text" name="input" placeholder="email" v-model="email" />
-      <br />
-      <input type="password" name="input" placeholder="password" v-model="password" />
-      <br />
-      <p v-on:click="goToSignUp()" class="btn">Sign Up</p>
-      <p v-on:click="emailLogin()" class="btn">Login</p>
-      <img
-        src="../assets/GoogleSignUpDark.png"
-        alt
-        id="google-signin-button"
-        v-on:click="SignInWithGoogle()"
-      />
+      <div class="field">
+        
+        
+         <p class="control has-icons-left has-icons-right">
+      <input 
+        class="input" 
+        type="email" 
+        placeholder="Email" 
+        v-model="email" />
+      <span class="icon is-small is-left">
+        <i class="fas fa-envelope"></i>
+      </span>
+      <span class="icon is-small is-right">
+        <i class="fas fa-check"></i>
+      </span>
+    </p>
+  
+    
+    
+    <div class="field">
+  <p class="control has-icons-left">
+    <input
+      class="input"
+      type="password"
+      placeholder="Password"
+      v-model="password"
+      @keydown.enter="emailLogin()"
+    />
+    <span class="icon is-small is-left">
+      <i class="fas fa-lock"></i>
+    </span>
+  </p>
+    </div>
+  
+  
+      
+      </div>
+      <div class="columns is-centered">
+        <div class="column has-text-centered is-2">
+          <div class="box has-text-centered">
+            <div class="buttons has-text-center">
+              <div class="buttons">
+                <button class="button is-info" v-on:click="goToSignUp()">Sign Up</button>
+                <button class="button is-success" v-on:click="emailLogin()">Login</button>
+              </div>
+              <img
+                src="../assets/GoogleSignUpDark.png"
+                alt
+                id="google-signin-button"
+                v-on:click="SignInWithGoogle()"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </form>
   </div>
 </template>
@@ -79,7 +122,7 @@ export default {
 
 <style scoped>
 #google-signin-button {
-  width: 10%;
+  width: 80%;
 }
 
 #google-signin-button:hover {
