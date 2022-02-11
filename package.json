@@ -19,7 +19,7 @@
     "dotenv-webpack": "^1.7.0",
     "fibers": "^4.0.2",
     "firebase": "^7.6.2",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "register-service-worker": "^1.6.2",
     "sass": "^1.24.4",
     "vue": "^2.6.10",
